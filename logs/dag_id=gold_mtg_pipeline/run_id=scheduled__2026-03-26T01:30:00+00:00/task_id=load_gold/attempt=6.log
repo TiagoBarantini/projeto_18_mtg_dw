@@ -1,0 +1,51 @@
+[2026-03-26T03:05:37.969+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T03:05:38.032+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gold_mtg_pipeline.load_gold scheduled__2026-03-26T01:30:00+00:00 [queued]>
+[2026-03-26T03:05:38.057+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gold_mtg_pipeline.load_gold scheduled__2026-03-26T01:30:00+00:00 [queued]>
+[2026-03-26T03:05:38.058+0000] {taskinstance.py:2306} INFO - Starting attempt 6 of 7
+[2026-03-26T03:05:38.085+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_gold> on 2026-03-26 01:30:00+00:00
+[2026-03-26T03:05:38.108+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gold_mtg_pipeline', 'load_gold', 'scheduled__2026-03-26T01:30:00+00:00', '--job-id', '132', '--raw', '--subdir', 'DAGS_FOLDER/dag_gold_mtg.py', '--cfg-path', '/tmp/tmph68qwdmn']
+[2026-03-26T03:05:38.116+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1184) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T03:05:38.117+0000] {standard_task_runner.py:63} INFO - Started process 1189 to run task
+[2026-03-26T03:05:38.117+0000] {standard_task_runner.py:91} INFO - Job 132: Subtask load_gold
+[2026-03-26T03:05:38.326+0000] {task_command.py:426} INFO - Running <TaskInstance: gold_mtg_pipeline.load_gold scheduled__2026-03-26T01:30:00+00:00 [running]> on host 19376725ebfe
+[2026-03-26T03:05:38.449+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='gold_mtg_pipeline' AIRFLOW_CTX_TASK_ID='load_gold' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T01:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='6' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-26T01:30:00+00:00'
+[2026-03-26T03:05:38.451+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T03:05:38.700+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T03:05:38.701+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/src/load/load_gold_postgres.py", line 16, in load_gold
+    df = pd.read_parquet(path)
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parquet.py", line 670, in read_parquet
+    return impl.read(
+           ^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parquet.py", line 265, in read
+    path_or_handle, handles, filesystem = _get_path_or_handle(
+                                          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parquet.py", line 139, in _get_path_or_handle
+    handles = get_handle(
+              ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 872, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/gold/dim_carta.parquet'
+[2026-03-26T03:05:38.712+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=gold_mtg_pipeline, task_id=load_gold, run_id=scheduled__2026-03-26T01:30:00+00:00, execution_date=20260326T013000, start_date=20260326T030538, end_date=20260326T030538
+[2026-03-26T03:05:38.725+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 132 for task load_gold ([Errno 2] No such file or directory: '/opt/airflow/data/gold/dim_carta.parquet'; 1189)
+[2026-03-26T03:05:38.753+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-03-26T03:05:38.774+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T03:05:38.777+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,46 @@
+[2026-03-26T02:26:20.608+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T02:26:20.679+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gold_mtg_pipeline.transform_gold scheduled__2026-03-26T01:30:00+00:00 [queued]>
+[2026-03-26T02:26:20.695+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gold_mtg_pipeline.transform_gold scheduled__2026-03-26T01:30:00+00:00 [queued]>
+[2026-03-26T02:26:20.695+0000] {taskinstance.py:2306} INFO - Starting attempt 9 of 11
+[2026-03-26T02:26:20.717+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transform_gold> on 2026-03-26 01:30:00+00:00
+[2026-03-26T02:26:20.736+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=861) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T02:26:20.737+0000] {standard_task_runner.py:63} INFO - Started process 863 to run task
+[2026-03-26T02:26:20.732+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gold_mtg_pipeline', 'transform_gold', 'scheduled__2026-03-26T01:30:00+00:00', '--job-id', '103', '--raw', '--subdir', 'DAGS_FOLDER/dag_gold_mtg.py', '--cfg-path', '/tmp/tmpqav_9_69']
+[2026-03-26T02:26:20.739+0000] {standard_task_runner.py:91} INFO - Job 103: Subtask transform_gold
+[2026-03-26T02:26:20.817+0000] {task_command.py:426} INFO - Running <TaskInstance: gold_mtg_pipeline.transform_gold scheduled__2026-03-26T01:30:00+00:00 [running]> on host f1086791f604
+[2026-03-26T02:26:21.182+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='gold_mtg_pipeline' AIRFLOW_CTX_TASK_ID='transform_gold' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T01:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='9' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-26T01:30:00+00:00'
+[2026-03-26T02:26:21.184+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T02:26:21.265+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T02:26:21.266+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/src/transform/transform_gold.py", line 25, in transform_gold
+    dim_carta = df[['card_id', 'name', 'type', 'rarity', 'set_name']].drop_duplicates()
+                ~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 3899, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 6115, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 6179, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['name', 'set_name'] not in index"
+[2026-03-26T02:26:21.283+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=gold_mtg_pipeline, task_id=transform_gold, run_id=scheduled__2026-03-26T01:30:00+00:00, execution_date=20260326T013000, start_date=20260326T022620, end_date=20260326T022621
+[2026-03-26T02:26:21.301+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 103 for task transform_gold ("['name', 'set_name'] not in index"; 863)
+[2026-03-26T02:26:21.361+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-03-26T02:26:21.401+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T02:26:21.405+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

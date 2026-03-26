@@ -1,0 +1,19 @@
+[2026-03-26T03:45:24.145+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T03:45:24.180+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: silver_mtg_pipeline.load_silver manual__2026-03-26T03:45:20.436123+00:00 [queued]>
+[2026-03-26T03:45:24.192+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: silver_mtg_pipeline.load_silver manual__2026-03-26T03:45:20.436123+00:00 [queued]>
+[2026-03-26T03:45:24.192+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-03-26T03:45:24.212+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_silver> on 2026-03-26 03:45:20.436123+00:00
+[2026-03-26T03:45:24.224+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'silver_mtg_pipeline', 'load_silver', 'manual__2026-03-26T03:45:20.436123+00:00', '--job-id', '178', '--raw', '--subdir', 'DAGS_FOLDER/dag_silver_mtg.py', '--cfg-path', '/tmp/tmpjz34ditb']
+[2026-03-26T03:45:24.227+0000] {standard_task_runner.py:91} INFO - Job 178: Subtask load_silver
+[2026-03-26T03:45:24.227+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=294) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T03:45:24.228+0000] {standard_task_runner.py:63} INFO - Started process 296 to run task
+[2026-03-26T03:45:24.275+0000] {task_command.py:426} INFO - Running <TaskInstance: silver_mtg_pipeline.load_silver manual__2026-03-26T03:45:20.436123+00:00 [running]> on host 5841df155fd2
+[2026-03-26T03:45:24.366+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='silver_mtg_pipeline' AIRFLOW_CTX_TASK_ID='load_silver' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T03:45:20.436123+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-26T03:45:20.436123+00:00'
+[2026-03-26T03:45:24.367+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T03:45:24.646+0000] {logging_mixin.py:188} INFO - Silver carregado no PostgreSQL ✅
+[2026-03-26T03:45:24.647+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-26T03:45:24.648+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T03:45:24.658+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=silver_mtg_pipeline, task_id=load_silver, run_id=manual__2026-03-26T03:45:20.436123+00:00, execution_date=20260326T034520, start_date=20260326T034524, end_date=20260326T034524
+[2026-03-26T03:45:24.695+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-26T03:45:24.712+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T03:45:24.714+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

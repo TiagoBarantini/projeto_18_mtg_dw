@@ -1,0 +1,19 @@
+[2026-03-26T03:45:33.110+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T03:45:33.160+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gold_mtg_pipeline.load_gold manual__2026-03-26T03:45:30.147592+00:00 [queued]>
+[2026-03-26T03:45:33.175+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gold_mtg_pipeline.load_gold manual__2026-03-26T03:45:30.147592+00:00 [queued]>
+[2026-03-26T03:45:33.176+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-03-26T03:45:33.205+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_gold> on 2026-03-26 03:45:30.147592+00:00
+[2026-03-26T03:45:33.223+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gold_mtg_pipeline', 'load_gold', 'manual__2026-03-26T03:45:30.147592+00:00', '--job-id', '180', '--raw', '--subdir', 'DAGS_FOLDER/dag_gold_mtg.py', '--cfg-path', '/tmp/tmphalsa7u5']
+[2026-03-26T03:45:33.226+0000] {standard_task_runner.py:91} INFO - Job 180: Subtask load_gold
+[2026-03-26T03:45:33.227+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=326) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T03:45:33.228+0000] {standard_task_runner.py:63} INFO - Started process 328 to run task
+[2026-03-26T03:45:33.298+0000] {task_command.py:426} INFO - Running <TaskInstance: gold_mtg_pipeline.load_gold manual__2026-03-26T03:45:30.147592+00:00 [running]> on host 5841df155fd2
+[2026-03-26T03:45:33.410+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='gold_mtg_pipeline' AIRFLOW_CTX_TASK_ID='load_gold' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T03:45:30.147592+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-26T03:45:30.147592+00:00'
+[2026-03-26T03:45:33.412+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T03:45:33.660+0000] {logging_mixin.py:188} INFO - Gold carregado no PostgreSQL ✅
+[2026-03-26T03:45:33.661+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-26T03:45:33.661+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T03:45:33.673+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=gold_mtg_pipeline, task_id=load_gold, run_id=manual__2026-03-26T03:45:30.147592+00:00, execution_date=20260326T034530, start_date=20260326T034533, end_date=20260326T034533
+[2026-03-26T03:45:33.731+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-26T03:45:33.750+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T03:45:33.753+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

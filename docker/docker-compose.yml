@@ -1,0 +1,76 @@
+
+x-airflow-common: &airflow-common
+  build: ..
+  env_file:
+    - ../.env
+  environment:
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres_dw:5432/mtg_dw
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__WEBSERVER__SECRET_KEY: 'airflow'
+  volumes:
+    - ../dags:/opt/airflow/dags
+    - ../src:/opt/airflow/src
+    - ../data:/opt/airflow/data
+    - ../logs:/opt/airflow/logs
+  depends_on:
+    postgres_dw:
+      condition: service_healthy
+
+services:
+
+  postgres_dw:
+    image: postgres:13
+    container_name: postgres_dw
+    env_file:
+      - ../.env
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+      timeout: 5s
+
+  airflow-init:
+    <<: *airflow-common
+    container_name: airflow_init
+    entrypoint: /bin/bash
+    command: >
+      -c "
+      airflow db init &&
+      airflow users create
+      --username admin
+      --password admin
+      --firstname Tiago
+      --lastname Barantini
+      --role Admin
+      --email admin@email.com
+      "
+    depends_on:
+      postgres_dw:
+        condition: service_healthy
+
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: airflow_webserver
+    ports:
+      - "8080:8080"
+    command: webserver
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: airflow_scheduler
+    command: scheduler
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+volumes:
+  postgres_data:

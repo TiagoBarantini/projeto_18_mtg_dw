@@ -1,0 +1,19 @@
+[2026-03-26T01:30:01.785+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T01:30:01.869+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bronze_mtg_pipeline.extract_exchange scheduled__2026-03-26T01:00:00+00:00 [queued]>
+[2026-03-26T01:30:01.890+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bronze_mtg_pipeline.extract_exchange scheduled__2026-03-26T01:00:00+00:00 [queued]>
+[2026-03-26T01:30:01.891+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-03-26T01:30:01.925+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): extract_exchange> on 2026-03-26 01:00:00+00:00
+[2026-03-26T01:30:01.953+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'bronze_mtg_pipeline', 'extract_exchange', 'scheduled__2026-03-26T01:00:00+00:00', '--job-id', '71', '--raw', '--subdir', 'DAGS_FOLDER/dag_bronze_mtg.py', '--cfg-path', '/tmp/tmpy3o3ovat']
+[2026-03-26T01:30:01.957+0000] {standard_task_runner.py:91} INFO - Job 71: Subtask extract_exchange
+[2026-03-26T01:30:01.962+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=676) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T01:30:01.966+0000] {standard_task_runner.py:63} INFO - Started process 682 to run task
+[2026-03-26T01:30:02.074+0000] {task_command.py:426} INFO - Running <TaskInstance: bronze_mtg_pipeline.extract_exchange scheduled__2026-03-26T01:00:00+00:00 [running]> on host d5dd30dd3575
+[2026-03-26T01:30:02.286+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='bronze_mtg_pipeline' AIRFLOW_CTX_TASK_ID='extract_exchange' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-26T01:00:00+00:00'
+[2026-03-26T01:30:02.290+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T01:30:03.148+0000] {logging_mixin.py:188} INFO - Câmbio atualizado: USD→BRL = 5.2315
+[2026-03-26T01:30:03.151+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-03-26T01:30:03.151+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T01:30:03.169+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=bronze_mtg_pipeline, task_id=extract_exchange, run_id=scheduled__2026-03-26T01:00:00+00:00, execution_date=20260326T010000, start_date=20260326T013001, end_date=20260326T013003
+[2026-03-26T01:30:03.219+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-26T01:30:03.236+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T01:30:03.238+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,45 @@
+[2026-03-26T03:30:02.770+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T03:30:02.897+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gold_mtg_pipeline.wait_silver scheduled__2026-03-26T03:00:00+00:00 [queued]>
+[2026-03-26T03:30:03.007+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gold_mtg_pipeline.wait_silver scheduled__2026-03-26T03:00:00+00:00 [queued]>
+[2026-03-26T03:30:03.008+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-03-26T03:30:03.118+0000] {taskinstance.py:2330} INFO - Executing <Task(ExternalTaskSensor): wait_silver> on 2026-03-26 03:00:00+00:00
+[2026-03-26T03:30:03.172+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'gold_mtg_pipeline', 'wait_silver', 'scheduled__2026-03-26T03:00:00+00:00', '--job-id', '149', '--raw', '--subdir', 'DAGS_FOLDER/dag_gold_mtg.py', '--cfg-path', '/tmp/tmptfyzjrxx']
+[2026-03-26T03:30:03.182+0000] {standard_task_runner.py:91} INFO - Job 149: Subtask wait_silver
+[2026-03-26T03:30:03.185+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=287) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T03:30:03.188+0000] {standard_task_runner.py:63} INFO - Started process 295 to run task
+[2026-03-26T03:30:03.324+0000] {task_command.py:426} INFO - Running <TaskInstance: gold_mtg_pipeline.wait_silver scheduled__2026-03-26T03:00:00+00:00 [running]> on host da3f064d8d7e
+[2026-03-26T03:30:03.689+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='gold_mtg_pipeline' AIRFLOW_CTX_TASK_ID='wait_silver' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T03:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-26T03:00:00+00:00'
+[2026-03-26T03:30:03.691+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T03:30:04.418+0000] {baseoperator.py:399} WARNING - ExternalTaskSensor.execute cannot be called outside TaskInstance!
+[2026-03-26T03:30:04.419+0000] {external_task.py:274} INFO - Poking for DAG 'silver_mtg_pipeline' on 2026-03-26T03:00:00+00:00 ... 
+[2026-03-26T03:30:04.426+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py:79 DeprecationWarning: This method is deprecated and will be removed in future.
+[2026-03-26T03:30:09.853+0000] {local_task_job_runner.py:124} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-03-26T03:30:09.866+0000] {process_utils.py:132} INFO - Sending 15 to group 295. PIDs of all processes in the group: [295]
+[2026-03-26T03:30:09.866+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 295
+[2026-03-26T03:30:09.867+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-03-26T03:30:09.868+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T03:30:09.886+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/sensors/external_task.py", line 348, in execute
+    super().execute(context)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/sensors/base.py", line 292, in execute
+    time.sleep(self._get_next_poke_interval(started_at, run_duration, try_number))
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-03-26T03:30:09.906+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=gold_mtg_pipeline, task_id=wait_silver, run_id=scheduled__2026-03-26T03:00:00+00:00, execution_date=20260326T030000, start_date=20260326T033002, end_date=20260326T033009
+[2026-03-26T03:30:10.081+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=295, status='terminated', exitcode=2, started='03:30:03') (295) terminated with exit code 2
+[2026-03-26T03:30:10.082+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 143
+[2026-03-26T03:30:10.161+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check

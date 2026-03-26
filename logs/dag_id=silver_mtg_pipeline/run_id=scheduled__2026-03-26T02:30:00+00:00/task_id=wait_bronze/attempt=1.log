@@ -1,0 +1,22 @@
+[2026-03-26T03:00:03.678+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-03-26T03:00:03.804+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: silver_mtg_pipeline.wait_bronze scheduled__2026-03-26T02:30:00+00:00 [queued]>
+[2026-03-26T03:00:03.854+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: silver_mtg_pipeline.wait_bronze scheduled__2026-03-26T02:30:00+00:00 [queued]>
+[2026-03-26T03:00:03.854+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 3
+[2026-03-26T03:00:03.917+0000] {taskinstance.py:2330} INFO - Executing <Task(ExternalTaskSensor): wait_bronze> on 2026-03-26 02:30:00+00:00
+[2026-03-26T03:00:03.972+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'silver_mtg_pipeline', 'wait_bronze', 'scheduled__2026-03-26T02:30:00+00:00', '--job-id', '129', '--raw', '--subdir', 'DAGS_FOLDER/dag_silver_mtg.py', '--cfg-path', '/tmp/tmpllq1ofo6']
+[2026-03-26T03:00:03.978+0000] {standard_task_runner.py:91} INFO - Job 129: Subtask wait_bronze
+[2026-03-26T03:00:03.986+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=959) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-03-26T03:00:03.987+0000] {standard_task_runner.py:63} INFO - Started process 970 to run task
+[2026-03-26T03:00:04.098+0000] {task_command.py:426} INFO - Running <TaskInstance: silver_mtg_pipeline.wait_bronze scheduled__2026-03-26T02:30:00+00:00 [running]> on host 19376725ebfe
+[2026-03-26T03:00:04.507+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='tiago' AIRFLOW_CTX_DAG_ID='silver_mtg_pipeline' AIRFLOW_CTX_TASK_ID='wait_bronze' AIRFLOW_CTX_EXECUTION_DATE='2026-03-26T02:30:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-26T02:30:00+00:00'
+[2026-03-26T03:00:04.508+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-03-26T03:00:04.931+0000] {baseoperator.py:399} WARNING - ExternalTaskSensor.execute cannot be called outside TaskInstance!
+[2026-03-26T03:00:04.933+0000] {external_task.py:274} INFO - Poking for DAG 'bronze_mtg_pipeline' on 2026-03-26T02:30:00+00:00 ... 
+[2026-03-26T03:00:04.939+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/utils/session.py:79 DeprecationWarning: This method is deprecated and will be removed in future.
+[2026-03-26T03:01:04.965+0000] {external_task.py:274} INFO - Poking for DAG 'bronze_mtg_pipeline' on 2026-03-26T02:30:00+00:00 ... 
+[2026-03-26T03:01:04.979+0000] {base.py:294} INFO - Success criteria met. Exiting.
+[2026-03-26T03:01:04.980+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-03-26T03:01:05.004+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=silver_mtg_pipeline, task_id=wait_bronze, run_id=scheduled__2026-03-26T02:30:00+00:00, execution_date=20260326T023000, start_date=20260326T030003, end_date=20260326T030105
+[2026-03-26T03:01:05.074+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-03-26T03:01:05.115+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-26T03:01:05.118+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
